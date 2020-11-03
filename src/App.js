@@ -1,50 +1,24 @@
-import styled, { keyframes } from 'styled-components/macro';
-import GlobalStyle from './GlobalStyle';
-import logo from './logo.svg';
-
-const logoSpin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Wrapper = styled.div`
-  text-align: center;
-
-  header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-
-  header img {
-    height: 40vmin;
-    pointer-events: none;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    header img {
-      animation: ${logoSpin} infinite 20s linear;
-    }
-  }
-`;
-
-const Link = styled.a`
-  color: #61dafb;
-`;
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
+      <Router>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route path="/">Home</Route>
+          <Route path="/contact">Contact</Route>
+        </Switch>
+      </Router>
+
+      {/* <GlobalStyle />
       <Wrapper>
         <header>
           <img src={logo} alt="logo" />
@@ -61,7 +35,7 @@ function App() {
             Learn React
           </Link>
         </header>
-      </Wrapper>
+      </Wrapper> */}
     </>
   );
 }
