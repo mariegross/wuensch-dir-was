@@ -13,8 +13,8 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path="/">Home</Route>
           <Route path="/contact">Contact</Route>
+          <Route path="/">Home</Route>
         </Switch>
       </Router>
 
