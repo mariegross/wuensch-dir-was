@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <HomeSection>
-      <h1>Merry Christmas</h1>
+      <h1>Christmas Wishlists</h1>
       {lists?.map((list) => (
         <Link key={list.id} to={`/${list.id}`}>
           <WishlistItem title={list.title} />

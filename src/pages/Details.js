@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import DangerButton from '../components/DangerButton';
 import AddButton from '../components/AddButton';
 
-import { getListbyId } from '../api/api';
+import { deleteListById, getListbyId } from '../api/api';
 import WishlistItem from '../components/WishlistItem';
 
 const HomeSection = styled.section`
@@ -15,6 +16,12 @@ const HomeSection = styled.section`
 export default function Details() {
   const { listId } = useParams();
 
+  const history = useHistory();
+
+  const handleDelete = async () => {
+    await deleteListById(listId);
+    history.push('/');
+  };
   const [list, setList] = useState([]);
   useEffect(async () => {
     const newList = await getListbyId(listId);
@@ -27,6 +34,12 @@ export default function Details() {
       {list.wishes?.map((wish) => (
         <WishlistItem key={wish} title={wish} />
       ))}
+      <DangerButton type="button" onClick={handleDelete}>
+        x
+      </DangerButton>
+      <Link to="/">
+        <AddButton>←</AddButton>
+      </Link>
     </HomeSection>
   );
 }
